@@ -89,12 +89,18 @@ namespace osuwikimappoolconverter
                     Counter = 0;
                 }
 
+                //if (Content[i].StartsWith(" -"))
+                //{
+                //    break;
+                //}
+
                 if (Content[i].StartsWith("  "))
                 {
-                    Counter++;
-                    if (Content[i].StartsWith("  -"))
+                    int dashLocation = Content[i].IndexOf('-');
+                    if (dashLocation < 5 && dashLocation > -1)
                     {
-                        Content[i] = Content[i].Remove(2, 1).Insert(2, Counter + ".");
+                        Counter++;
+                        Content[i] = Content[i].Remove(dashLocation, 1).Insert(dashLocation, Counter + ".");
                     }
                 }
 
